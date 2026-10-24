@@ -33,6 +33,9 @@ def compute_metrics(d: pd.DataFrame) -> dict:
         "mape_pct": round(float((nz.abs_error / nz.actual).mean() * 100), 1),
     }
 
+@app.get("/")
+def root():
+    return {"service": "Wind Forecast Accuracy API", "docs": "/docs", "metrics": "/api/metrics"}
 
 @app.get("/api/health")
 def health():
